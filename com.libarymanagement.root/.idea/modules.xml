@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/com.libarymanagement.console/com.libarymanagement.console.iml" filepath="$PROJECT_DIR$/com.libarymanagement.console/com.libarymanagement.console.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.libarymanagement.root.iml" filepath="$PROJECT_DIR$/com.libarymanagement.root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.libarymanangement.core/com.libarymanangement.core.iml" filepath="$PROJECT_DIR$/com.libarymanangement.core/com.libarymanangement.core.iml" />
+    </modules>
+  </component>
+</project>
