@@ -31,7 +31,10 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="IdProvider" IDEtalkID="E4FFB600EC913094D22E394A4D36E3AE" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/com.libarymanagement.console" />
+  </component>
+  <component name="IdProvider" IDEtalkID="D9FEF00703F685B20DC2417682A15A09" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

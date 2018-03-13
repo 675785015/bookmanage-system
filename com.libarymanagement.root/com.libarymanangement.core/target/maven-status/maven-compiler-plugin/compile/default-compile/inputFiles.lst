@@ -1,0 +1,16 @@
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\extEntity\Page.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\service\CategoryService.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\pojo\Category.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\ApplicationCore.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\responseModel\base\JsonResultError.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\extEntity\CommonEntity.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\service\impl\CategoryServiceImpl.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\conf\mybatis\MybatisConfig.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\dao\category\CategoryDao.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\responseModel\base\JsonResultList.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\utils\ValidationUtil.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\responseModel\base\JsonResult.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\responseModel\base\JsonResultOk.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\responseModel\base\JsonResultData.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\responseModel\base\AuthorizeResult.java
+F:\bookmanage-system\com.libarymanagement.root\com.libarymanangement.core\src\main\java\com\libarymanagement\core\mapper\category\CategoryMapper.java

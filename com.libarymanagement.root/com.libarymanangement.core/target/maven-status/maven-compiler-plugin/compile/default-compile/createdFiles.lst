@@ -1,0 +1,16 @@
+com\libarymanagement\core\responseModel\base\JsonResultData.class
+com\libarymanagement\core\conf\mybatis\MybatisConfig.class
+com\libarymanagement\core\responseModel\base\AuthorizeResult.class
+com\libarymanagement\core\utils\ValidationUtil.class
+com\libarymanagement\core\dao\category\CategoryDao.class
+com\libarymanagement\core\pojo\Category.class
+com\libarymanagement\core\responseModel\base\JsonResultList.class
+com\libarymanagement\core\service\impl\CategoryServiceImpl.class
+com\libarymanagement\core\extEntity\Page.class
+com\libarymanagement\core\ApplicationCore.class
+com\libarymanagement\core\responseModel\base\JsonResult.class
+com\libarymanagement\core\responseModel\base\JsonResultError.class
+com\libarymanagement\core\extEntity\CommonEntity.class
+com\libarymanagement\core\responseModel\base\JsonResultOk.class
+com\libarymanagement\core\mapper\category\CategoryMapper.class
+com\libarymanagement\core\service\CategoryService.class

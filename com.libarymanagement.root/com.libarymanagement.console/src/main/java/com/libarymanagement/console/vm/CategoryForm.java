@@ -2,7 +2,8 @@ package com.libarymanagement.console.vm;
 
 import com.libarymanagement.core.pojo.Category;
 
-import java.util.Locale;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Lee on 2018/2/8.
@@ -11,7 +12,8 @@ public class CategoryForm {
     private Long parentId;
 
     private Long id;
-
+    @NotBlank(message = "分类名称不能为空")
+    @Size(min=1,max=20,message = "名称不能多于20个字符")
     private String name;
 
 

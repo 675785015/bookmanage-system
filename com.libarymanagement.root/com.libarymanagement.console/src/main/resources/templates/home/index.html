@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <#include "/common/head.html"/>
+    <script src="/content/AdminLTE-2.2.0/plugins/chartjs/Chart.js"></script>
+    <style type="text/css">
+        .bar-legend li span {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .bar-legend {
+            list-style: none;
+        }
+    </style>
+</head>
+<body class="skin-blue sidebar-mini">
+    <#include "/common/main-header.html"/>
+    <!-- Left side column. contains the logo and sidebar -->
+    <#include "/common/main-sidebar.html"/>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>统计信息（昨日信息）</h1>
+        </section>
+        <!-- Main content -->
+        <div id="container" style="width: 600px; height: 400px; margin: 30px"></div>
+    </div>
+    <!-- /.content-wrapper -->
+    <#include "/common/footer.html"/>
+</body>
+<script src="/content/js/lib/highcharts.js"></script>
+<script src="/content/script/home/index.js"></script>
+</html>

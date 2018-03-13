@@ -1,28 +1,19 @@
 package com.libarymanagement.core.pojo;
 
-import java.util.List;
+import java.util.Date;
 
-/**
- * Created by Lee on 2018/2/8.
- */
 public class Category {
-
-    private Long parentId;
-
     private Long id;
 
     private String name;
 
-    private List<Category> categoryList;
+    private Date createTime;
 
+    private Date updateTime;
 
-    public Long getParentId() {
-        return parentId;
-    }
+    private Integer isDel;
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
+    private Long parentId;
 
     public Long getId() {
         return id;
@@ -37,14 +28,38 @@ public class Category {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
-    public List<Category> getCategoryList() {
-        return categoryList;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(Integer isDel) {
+        this.isDel = isDel;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 }

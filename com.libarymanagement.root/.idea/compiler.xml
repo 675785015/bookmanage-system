@@ -23,14 +23,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="com.libarymanagement.console" />
-        <module name="com.libarymanangement.core" />
+        <module name="console" />
+        <module name="core" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="com.libarymanagement.console" target="1.8" />
-      <module name="com.libarymanagement.root" target="1.8" />
-      <module name="com.libarymanangement.core" target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="console" target="1.8" />
+      <module name="core" target="1.8" />
+      <module name="root" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
