@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <#include "/common/head.html"/>
+</head>
+<body class="skin-blue sidebar-mini">
+<#include "/common/main-header.html"/>
+<!-- Left side column. contains the logo and sidebar -->
+<#include "/common/main-sidebar.html"/>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            图书管理
+            <small>advanced tables</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">图书管理</a></li>
+            <li class="active">图书列表</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content" id="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">图书列表</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>书名</th>
+                                <th>作者</th>
+                                <th>出版社</th>
+                                <th>ISBN</th>
+                                <th>出版社</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Trident</td>
+                                <td>Internet
+                                    Explorer 4.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td> 4</td>
+                                <td>X</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>书名</th>
+                                <th>作者</th>
+                                <th>出版社</th>
+                                <th>ISBN</th>
+                                <th>出版社</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /.content-wrapper -->
+<#include "/common/footer.html"/>
+<script src="/content/script/book/index.js"></script>
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script>
+</body>
+</html>

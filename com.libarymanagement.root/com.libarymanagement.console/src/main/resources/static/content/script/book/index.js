@@ -89,9 +89,6 @@ var vm = new Vue({
                     layer.msg(response.error);
                 }
             })
-        },
-        toAddBook:function(categoryId, category){
-            this.$router.push({path: '/book/add'})
         }
     }
 });

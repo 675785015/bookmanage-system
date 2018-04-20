@@ -27,6 +27,7 @@ public class ValidationUtil {
         while (iter.hasNext()) {
             String message = iter.next().getMessage();
             buffer.append(message);
+            buffer.append(";<br>");
         }
         return buffer.toString();
     }

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.libarymanagement.core.mapper.book.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.libarymanagement.core.pojo.Book" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="preview" property="preview" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="press" property="press" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="category_field" property="categoryField" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="cover_path" property="coverPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, preview, author, isbn, press, category_id, category_field, create_time, 
+    update_time, is_del, cover_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from book
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.libarymanagement.core.pojo.Book" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into book (name, preview, author, 
+      isbn, press, category_id, 
+      category_field, create_time, update_time, 
+      is_del, cover_path)
+    values (#{name,jdbcType=VARCHAR}, #{preview,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{isbn,jdbcType=VARCHAR}, #{press,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT}, 
+      #{categoryField,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDel,jdbcType=INTEGER}, #{coverPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.libarymanagement.core.pojo.Book" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="preview != null" >
+        preview,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="isbn != null" >
+        isbn,
+      </if>
+      <if test="press != null" >
+        press,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryField != null" >
+        category_field,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="coverPath != null" >
+        cover_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="preview != null" >
+        #{preview,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="press != null" >
+        #{press,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryField != null" >
+        #{categoryField,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="coverPath != null" >
+        #{coverPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.libarymanagement.core.pojo.Book" >
+    update book
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="preview != null" >
+        preview = #{preview,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        isbn = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="press != null" >
+        press = #{press,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryField != null" >
+        category_field = #{categoryField,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="coverPath != null" >
+        cover_path = #{coverPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.libarymanagement.core.pojo.Book" >
+    update book
+    set name = #{name,jdbcType=VARCHAR},
+      preview = #{preview,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      isbn = #{isbn,jdbcType=VARCHAR},
+      press = #{press,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=BIGINT},
+      category_field = #{categoryField,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=INTEGER},
+      cover_path = #{coverPath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

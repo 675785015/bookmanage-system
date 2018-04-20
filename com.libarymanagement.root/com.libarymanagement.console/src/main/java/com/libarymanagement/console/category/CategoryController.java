@@ -66,6 +66,7 @@ public class CategoryController {
         category.setIsDel(1);
         int i = categoryService.addUpdateDelCategory(category);
         if (i > 0) {
+            category = categoryService.selectByPrimaryKey(category.getId());
             JsonResult jsonResult = categoryList(category.getParentId());
             return jsonResult;
         } else {
