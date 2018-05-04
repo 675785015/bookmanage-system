@@ -4,7 +4,9 @@ var model = {
     //查询条件
     searchObj: {},
     filepath:'',
-    realpath:'http://localhost:8081'
+    realpath:'http://localhost:8081/image/timg.jpg',
+    rootPath:'http://localhost:8081',
+    isDisabled:false
 };
 
 // 创建一个 Vue 实例 (ViewModel),它连接 View 与 Model
@@ -36,9 +38,13 @@ var vm = new Vue({
                     },
                     dataType:"json",
                     success:function(response){
-                        //把json格式的字符串转换成json对象
-                        vm.filepath = response.data;
-                        vm.realpath = vm.realpath+response.data;
+                        if (response.success_is_ok) {
+                            vm.filepath = response.data;
+                            vm.realpath = vm.rootPath+response.data;
+                        }else{
+                            layer.msg(response.error,{icon:5});
+                        }
+
                     },
                     error:function(){
                         alert("系统错误");
@@ -48,15 +54,17 @@ var vm = new Vue({
                 $("#fileForm").ajaxSubmit(option);
             },
             formSubmit:function(){
+                vm.isDisabled = true;
                 var obj = $("#fileForm").serializeObject();
                 $.post("/api/book/addBook",obj,function(response){
                     if(response.success_is_ok){
-                        layer.msg(response.data,{icon: 5},function(){
+                        layer.msg(response.msg,{icon: 1,time:3000},function(){
                             window.location.reload();
                         });
                     }else{
                         layer.msg(response.error,{icon: 5});
                     }
+                    vm.isDisabled = false;
                 })
             }
         }

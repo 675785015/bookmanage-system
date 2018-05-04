@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.libarymanagement.core.mapper.order.TbOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.libarymanagement.core.pojo.TbOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ord_number" property="ordNumber" jdbcType="VARCHAR" />
+    <result column="ord_member_id" property="ordMemberId" jdbcType="BIGINT" />
+    <result column="ord_book_id" property="ordBookId" jdbcType="BIGINT" />
+    <result column="ord_borrow_time" property="ordBorrowTime" jdbcType="TIMESTAMP" />
+    <result column="ord_return_time" property="ordReturnTime" jdbcType="TIMESTAMP" />
+    <result column="ord_plan_time" property="ordPlanTime" jdbcType="TIMESTAMP" />
+    <result column="ord_status" property="ordStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ord_number, ord_member_id, ord_book_id, ord_borrow_time, ord_return_time, ord_plan_time, 
+    ord_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.libarymanagement.core.pojo.TbOrder" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_order (ord_number, ord_member_id, ord_book_id, 
+      ord_borrow_time, ord_return_time, ord_plan_time, 
+      ord_status)
+    values (#{ordNumber,jdbcType=VARCHAR}, #{ordMemberId,jdbcType=BIGINT}, #{ordBookId,jdbcType=BIGINT}, 
+      #{ordBorrowTime,jdbcType=TIMESTAMP}, #{ordReturnTime,jdbcType=TIMESTAMP}, #{ordPlanTime,jdbcType=TIMESTAMP}, 
+      #{ordStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.libarymanagement.core.pojo.TbOrder" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ordNumber != null" >
+        ord_number,
+      </if>
+      <if test="ordMemberId != null" >
+        ord_member_id,
+      </if>
+      <if test="ordBookId != null" >
+        ord_book_id,
+      </if>
+      <if test="ordBorrowTime != null" >
+        ord_borrow_time,
+      </if>
+      <if test="ordReturnTime != null" >
+        ord_return_time,
+      </if>
+      <if test="ordPlanTime != null" >
+        ord_plan_time,
+      </if>
+      <if test="ordStatus != null" >
+        ord_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ordNumber != null" >
+        #{ordNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ordMemberId != null" >
+        #{ordMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="ordBookId != null" >
+        #{ordBookId,jdbcType=BIGINT},
+      </if>
+      <if test="ordBorrowTime != null" >
+        #{ordBorrowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordReturnTime != null" >
+        #{ordReturnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordPlanTime != null" >
+        #{ordPlanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordStatus != null" >
+        #{ordStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.libarymanagement.core.pojo.TbOrder" >
+    update tb_order
+    <set >
+      <if test="ordNumber != null" >
+        ord_number = #{ordNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ordMemberId != null" >
+        ord_member_id = #{ordMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="ordBookId != null" >
+        ord_book_id = #{ordBookId,jdbcType=BIGINT},
+      </if>
+      <if test="ordBorrowTime != null" >
+        ord_borrow_time = #{ordBorrowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordReturnTime != null" >
+        ord_return_time = #{ordReturnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordPlanTime != null" >
+        ord_plan_time = #{ordPlanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordStatus != null" >
+        ord_status = #{ordStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.libarymanagement.core.pojo.TbOrder" >
+    update tb_order
+    set ord_number = #{ordNumber,jdbcType=VARCHAR},
+      ord_member_id = #{ordMemberId,jdbcType=BIGINT},
+      ord_book_id = #{ordBookId,jdbcType=BIGINT},
+      ord_borrow_time = #{ordBorrowTime,jdbcType=TIMESTAMP},
+      ord_return_time = #{ordReturnTime,jdbcType=TIMESTAMP},
+      ord_plan_time = #{ordPlanTime,jdbcType=TIMESTAMP},
+      ord_status = #{ordStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <sql id="selectByCondition_Where_Clause">
+        <if test="order.ordNumber!=null">
+            ord_number = #{order.ordNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="order.status!=null">
+            AND ord_status = #{order.status,jdbcType=INTEGER}
+        </if>
+        <if test="order.ordBorrowTimeST!=null">
+            AND ord_borrow_time >= ${order.ordBorrowTimeST}
+        </if>
+        <if test="order.ordBorrowTimeET!=null">
+            <![CDATA[
+              AND ord_borrow_time <= ${order.ordBorrowTimeET}
+            ]]>
+        </if>
+        <if test="pageWhere!=null">
+            LIMIT #{pageWhere.begin},#{pageWhere.pageSize}
+        </if>
+    </sql>
+
+
+    <select id="getListByCondition" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        tb_member
+        <where>
+            <include refid="selectByCondition_Where_Clause"/>
+        </where>
+    </select>
+
+    <select id="getCountByCondition" resultType="int">
+        SELECT
+        count(id)
+        FROM
+        tb_member
+        <where>
+            <include refid="selectByCondition_Where_Clause"/>
+        </where>
+    </select>
+</mapper>

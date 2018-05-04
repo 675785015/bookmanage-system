@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <#include "/common/head.html"/>
 </head>
@@ -13,8 +13,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            图书管理
-            <small>advanced tables</small>
+            <small>图书管理</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
@@ -30,42 +29,60 @@
                     <div class="box-header">
                         <h3 class="box-title">图书列表</h3>
                     </div>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" @click="getlist(0)">未上架</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" @click="getlist(1)">已上架</a>
+                        </li>
+                    </ul>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>书名</th>
-                                <th>作者</th>
-                                <th>出版社</th>
-                                <th>ISBN</th>
-                                <th>出版社</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>书名</th>
-                                <th>作者</th>
-                                <th>出版社</th>
-                                <th>ISBN</th>
-                                <th>出版社</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                        <div class="tab-pane fade in active" id="shelf">
+                            <table id="example1" class="table table-bordered table-hover dataTable" role="grid"
+                                   aria-describedby="orderlist_table_info">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>序号</th>
+                                    <th>书名</th>
+                                    <th>作者</th>
+                                    <th>出版社</th>
+                                    <th>ISBN</th>
+                                    <th>是否上架</th>
+                                    <th>
+                                        操作<a v-if="searchObj.onShelfState==0" class="btn btn-default btn-xs" role="button">批量上架</a>
+                                        <a v-if="searchObj.onShelfState==1" class="btn btn-default btn-xs" role="button">批量下架</a>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr role="row" v-for="(item,index) in booklist">
+                                    <td><input type="checkbox" name="bookId" value="item.id"/></td>
+                                    <td>{{index + 1}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.author}}</td>
+                                    <td>{{item.press}}</td>
+                                    <td>{{item.isbn}}</td>
+                                    <td>{{status[item.onShelf]}}</td>
+                                    <td>
+                                        <a class="btn btn-default btn-xs" role="button" @click="todetail(item.id)">详情</a>
+                                        <a v-if="item.onShelf == 0" class="btn btn-default btn-xs" role="button" @click="onshelf(item.id, 1)">上架</a>
+                                        <a v-if="item.onShelf == 1" class="btn btn-default btn-xs" role="button" @click="onshelf(item.id, 0)">下架</a>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.box-body -->
+                    <div class="row">
+                        <div class="col-sm-12 pagination">
+                            <div id="pageNum"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,18 +91,5 @@
 <!-- /.content-wrapper -->
 <#include "/common/footer.html"/>
 <script src="/content/script/book/index.js"></script>
-<!-- page script -->
-<script>
-    $(function () {
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
-        })
-    })
-</script>
 </body>
 </html>

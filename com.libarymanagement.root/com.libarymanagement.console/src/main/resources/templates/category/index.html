@@ -110,7 +110,7 @@
                                         <tr role="row" v-for="item in categorys3">
                                             <td>{{item.name}}
                                                 <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="removeCategory(item.id,3)" title="删除分类"><span class="glyphicon glyphicon-remove"></span></a>
-                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="toAddBook(item.id,item.name)" title="添加图书"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a :href="'/toAddBook/'+item.id+'/'+item.name" class="btn btn-default btn-xs remove-msg" role="button" title="添加图书"><span class="glyphicon glyphicon-remove"></span></a>
                                             </td>
                                         </tr>
                                         </tbody>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <#include "/common/head.html"/>
+    <link type="text/css" rel="styleSheet" href="/content/plugins/fileinput/css/fileinput.min.css">
+</head>
+<body class="skin-blue sidebar-mini">
+<#include "/common/main-header.html"/>
+<!-- Left side column. contains the logo and sidebar -->
+<#include "/common/main-sidebar.html"/>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            会员管理
+            <small>advanced tables</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">会员管理</a></li>
+            <li class="active">添加会员</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">添加图书</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form role="form" id="fileForm" method="post" enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="input-group">
+                                <span class="input-group-addon">学生证号</span>
+                                <input type="text" class="form-control" placeholder="学生证号" name="cardNumber" :value="member.cardNumber">
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">学院</span>
+                                <input type="text" class="form-control" placeholder="学院" name="collegeName" :value="member.collegeName">
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">姓名</span>
+                                <input type="text" class="form-control" placeholder="姓名" name="trueName" :value="member.trueName">
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">手机号</span>
+                                <input type="text" class="form-control" placeholder="手机号" name="mobile" :value="member.mobile">
+                            </div>
+                            <br>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button class="btn btn-primary" @click.prevent="formSubmit" :disabled='isDisabled'>Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /.content-wrapper -->
+<#include "/common/footer.html"/>
+<script src="/content/js/lib/jquery.form.js"></script>
+<script src="/content/script/member/add.js"></script>
+</body>
+</html>

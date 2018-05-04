@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <#include "/common/head.html"/>
+</head>
+<body class="skin-blue sidebar-mini">
+<#include "/common/main-header.html"/>
+<!-- Left side column. contains the logo and sidebar -->
+<#include "/common/main-sidebar.html"/>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>借条管理</h1>
+    </section>
+    <!-- Main content -->
+    <section class="content" id="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <form action="" class="form-inline" id="search_form" novalidate="novalidate">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="input-group ">
+                                    <div class="input-group-addon">会员编号</div>
+                                    <input type="text" class="form-control" placeholder="" name="title" v-model="searchObj.title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group margin">
+                                    <div class="input-group-addon">文章类别</div>
+                                    <div id="tree"></div>
+                                    <select class="select2" id="typeId" name="typeId" style="width: 15rem;"
+                                            v-model="searchObj.typeId">
+                                        <option value="0">全部</option>
+                                        <option v-for="item in aTypes" :value="item.id">{{ item.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group  margin">
+                                    <a href="javascript:void(0);" class="btn btn-primary" role="button" id="btnSearch" @click.prevent="search">搜索</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a href="/article/details/0" class="btn btn-primary" role="button" id="add-people">添加</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--表格内容-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div id="orderlist_table_wrapper" class="dataTables_wrapper">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="orderlist_table" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="orderlist_table_info">
+                                        <thead>
+                                        <tr role="row">
+                                            <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">单号</th>
+                                            <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书时间</th>
+                                            <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">还书时间</th>
+                                            <th width="10%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">计划还书时间</th>
+                                            <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">是否归还</th>
+                                            <th width="20%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr role="row" v-for="item in articles">
+                                            <td>{{item.typeName}}</td>
+                                            <td>{{item.title}}</td>
+                                            <td>{{item.editDate}}</td>
+                                            <td>{{item.updateTime}}</td>
+                                            <td>{{item.updateTime}}</td>
+                                            <td>
+                                                <a :href="getEditHref(item.id)" class="btn btn-default btn-xs" role="button">详情</a>
+                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="openDeleteWin(item.id)">我的借书单</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 pagination">
+                                    <div id="pageNum"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /.content-wrapper -->
+<#include "/common/footer.html"/>
+<script src="/content/script/member/index.js"></script>
+</body>
+</html>

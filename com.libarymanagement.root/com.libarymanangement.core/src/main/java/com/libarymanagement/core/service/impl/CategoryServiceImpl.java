@@ -43,13 +43,13 @@ public class CategoryServiceImpl implements CategoryService {
             }
             category.setCreateTime(new Date());
             category.setUpdateTime(category.getCreateTime());
-            category.setIsDel(CommonEntity.ISDEL_FALSE);
+            category.setStatus(CommonEntity.STATUS_ON);
             //新增
             count = dao.insert(category);
             return count;
         }
         //删除
-        if(category.getIsDel()==1){
+        if(category.getStatus()==CommonEntity.STATUS_OFF){
             //是否存在下级分类
             List<Category> categorys = getCategorys(category.getId());
 

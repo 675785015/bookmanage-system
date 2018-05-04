@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.libarymanagement.core.mapper.member.TbMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.libarymanagement.core.pojo.TbMember" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="register_datetime" property="registerDatetime" jdbcType="TIMESTAMP" />
+    <result column="logout_datetime" property="logoutDatetime" jdbcType="TIMESTAMP" />
+    <result column="logout_reason" property="logoutReason" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, card_number, college_name, true_name, register_datetime, logout_datetime, logout_reason, 
+    mobile, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_member
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.libarymanagement.core.pojo.TbMember" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_member (card_number, college_name, true_name, 
+      register_datetime, logout_datetime, logout_reason, 
+      mobile, status)
+    values (#{cardNumber,jdbcType=VARCHAR}, #{collegeName,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, 
+      #{registerDatetime,jdbcType=TIMESTAMP}, #{logoutDatetime,jdbcType=TIMESTAMP}, #{logoutReason,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.libarymanagement.core.pojo.TbMember" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="collegeName != null" >
+        college_name,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="registerDatetime != null" >
+        register_datetime,
+      </if>
+      <if test="logoutDatetime != null" >
+        logout_datetime,
+      </if>
+      <if test="logoutReason != null" >
+        logout_reason,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeName != null" >
+        #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDatetime != null" >
+        #{registerDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutDatetime != null" >
+        #{logoutDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutReason != null" >
+        #{logoutReason,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.libarymanagement.core.pojo.TbMember" >
+    update tb_member
+    <set >
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeName != null" >
+        college_name = #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDatetime != null" >
+        register_datetime = #{registerDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutDatetime != null" >
+        logout_datetime = #{logoutDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutReason != null" >
+        logout_reason = #{logoutReason,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.libarymanagement.core.pojo.TbMember" >
+    update tb_member
+    set card_number = #{cardNumber,jdbcType=VARCHAR},
+      college_name = #{collegeName,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      register_datetime = #{registerDatetime,jdbcType=TIMESTAMP},
+      logout_datetime = #{logoutDatetime,jdbcType=TIMESTAMP},
+      logout_reason = #{logoutReason,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    
+
+    <sql id="selectByCondition_Where_Clause">
+        <if test="member.cardNumber!=null">
+            card_number = #{member.cardNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="member.trueName!=null">
+            AND true_name = #{member.trueName,jdbcType=VARCHAR}
+        </if>
+        <if test="member.mobile!=null">
+            AND mobile = #{member.mobile,jdbcType=VARCHAR}
+        </if>
+        <if test="member.status!=null">
+            AND status = #{member.status,jdbcType=INTEGER}
+        </if>
+        <if test="pageWhere!=null">
+            LIMIT #{pageWhere.begin},#{pageWhere.pageSize}
+        </if>
+    </sql>
+
+    <select id="getListByCondition" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+          tb_member
+        <where>
+            <include refid="selectByCondition_Where_Clause"/>
+        </where>
+    </select>
+    
+    <select id="getCountByCondition" resultType="int">
+        SELECT
+          count(id)
+          FROM
+          tb_member
+          <where>
+              <include refid="selectByCondition_Where_Clause"/>
+          </where>
+    </select>
+</mapper>

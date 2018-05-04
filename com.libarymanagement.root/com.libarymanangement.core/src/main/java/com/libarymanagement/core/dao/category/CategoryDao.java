@@ -1,6 +1,7 @@
 package com.libarymanagement.core.dao.category;
 
-import com.libarymanagement.core.mapper.category.CategoryMapper;
+import com.libarymanagement.core.extEntity.CommonEntity;
+import com.libarymanagement.core.mapper.category.TbCategoryMapper;
 import com.libarymanagement.core.pojo.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import java.util.List;
 public class CategoryDao {
 
     @Autowired
-    public CategoryMapper mapper;
+    public TbCategoryMapper mapper;
 
     public int deleteByPrimaryKey(Long id){
         int i = mapper.deleteByPrimaryKey(id);
@@ -49,7 +50,7 @@ public class CategoryDao {
 
     public List<Category> getListByParentId(Long parentId){
         Category category = new Category();
-        category.setIsDel(0);
+        category.setStatus(CommonEntity.STATUS_ON);
         category.setParentId(parentId);
         List<Category> categories = mapper.getListByParentId(category);
         return categories;

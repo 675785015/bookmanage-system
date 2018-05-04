@@ -5,7 +5,7 @@ package com.libarymanagement.core.extEntity;
  */
 public class CommonEntity {
 
-    public static int ISDEL_TRUE = 1;
-    public static int ISDEL_FALSE = 0;
+    public static final int STATUS_OFF = 0;
+    public static final int STATUS_ON = 1;
 
 }

@@ -1,8 +1,11 @@
 package com.libarymanagement.core.pojo;
 
+import com.fasterxml.jackson.databind.deser.Deserializers;
+
 import java.util.Date;
 
-public class Book {
+public class Book{
+
     private Long id;
 
     private String name;
@@ -23,7 +26,7 @@ public class Book {
 
     private Date updateTime;
 
-    private Integer isDel;
+    private Integer onShelf;
 
     private String coverPath;
 
@@ -107,19 +110,19 @@ public class Book {
         this.updateTime = updateTime;
     }
 
-    public Integer getIsDel() {
-        return isDel;
-    }
-
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
-    }
-
     public String getCoverPath() {
         return coverPath;
     }
 
     public void setCoverPath(String coverPath) {
         this.coverPath = coverPath == null ? null : coverPath.trim();
+    }
+
+    public Integer getOnShelf() {
+        return onShelf;
+    }
+
+    public void setOnShelf(Integer onShelf) {
+        this.onShelf = onShelf;
     }
 }

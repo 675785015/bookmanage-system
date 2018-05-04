@@ -13,16 +13,18 @@ public class BookForm {
 
     public Book toEntity(BookForm form) {
         Book book = new Book();
+        book.setId(form.getId());
         book.setName(form.getName());
         book.setAuthor(form.getAuthor());
-        book.setPress(form.getPress());
+        book.setPress(form.getPress().trim());
         book.setPreview(form.getPreview());
-        book.setIsbn(form.getIsbn());
+        book.setIsbn(form.getIsbn().trim());
         book.setCategoryId(form.getCategoryId());
         book.setCategoryField(form.getCategoryField());
-        book.setCoverPath(form.getCoverPath());
+        book.setCoverPath(form.getCoverPath().trim());
         return book;
     }
+
 
     @NotBlank(message = "书名不能为空")
     private String name;
@@ -33,7 +35,7 @@ public class BookForm {
     @Size(min = 1, max = 50)
     private String author;
     @NotBlank(message = "ISBN不能为空")
-    @Size(min = 10, max = 20)
+    @Size(min = 10, max = 20,message = "ISBN号在10到20之间")
     private String isbn;
     @NotBlank(message = "出版社不能为空")
     @Size(min = 1, max = 50)
@@ -45,6 +47,15 @@ public class BookForm {
     @NotBlank(message = "图片路径不能为空")
     private String coverPath;
 
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

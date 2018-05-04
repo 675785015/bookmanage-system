@@ -39,8 +39,8 @@
                         <div class="box-body">
                             <div class="input-group">
                                 <span class="input-group-addon">所属分类</span>
-                                <input type="text" class="form-control" readonly="readonly" name="categoryField">
-                                <input type="hidden" class="form-control" name="categoryId">
+                                <input type="text" class="form-control" readonly="readonly" name="categoryField" value="${categoryField}">
+                                <input type="hidden" class="form-control" name="categoryId" value="${categoryId}">
                             </div>
                             <br>
 
@@ -73,15 +73,18 @@
                                 <textarea class="form-control" rows="4" placeholder="Enter ..." name="preview"></textarea>
                             </div>
                             <div class="form-group">
-                                <img :src="realpath">
+                                <label>封面上传</label>
+                                <div style="width: 100px;height: 140px">
+                                    <img :src="realpath" width="100px" height="140px">
+                                </div>
                                 <input id="imgsFile" type="file" name="imgsFile" class="layui-btn"/>
                                 <button class="btn btn-primary" @click.prevent="submitUpload">上传</button>
-                                <input name="coverPath" type="type" :value="filepath"/>
+                                <input name="coverPath" type="hidden" :value="filepath"/>
                             </div>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button class="btn btn-primary" @click.prevent="formSubmit">Submit</button>
+                            <button class="btn btn-primary" @click.prevent="formSubmit" :disabled='isDisabled'>Submit</button>
                         </div>
                     </form>
                 </div>

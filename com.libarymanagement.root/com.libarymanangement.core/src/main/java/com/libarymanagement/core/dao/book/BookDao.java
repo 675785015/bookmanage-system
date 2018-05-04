@@ -1,9 +1,12 @@
 package com.libarymanagement.core.dao.book;
 
-import com.libarymanagement.core.mapper.book.BookMapper;
+import com.libarymanagement.core.extEntity.PageWhere;
+import com.libarymanagement.core.mapper.book.TbBookMapper;
 import com.libarymanagement.core.pojo.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Created by Lee on 2018/4/20.
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class BookDao {
 
     @Autowired
-    private BookMapper mapper;
+    private TbBookMapper mapper;
 
     public int deleteByPrimaryKey(Long id){
         return mapper.deleteByPrimaryKey(id);
@@ -31,10 +34,19 @@ public class BookDao {
     }
 
     public int updateByPrimaryKeySelective(Book record){
-        return updateByPrimaryKeySelective(record);
+        return mapper.updateByPrimaryKeySelective(record);
     }
 
     public int updateByPrimaryKey(Book record){
-        return updateByPrimaryKey(record);
+        return mapper.updateByPrimaryKey(record);
     }
+
+    public List<Book> selectBookListByCondition(Book book, PageWhere pageWhere){
+        return mapper.selectBookListByCondition(book,pageWhere);
+    }
+
+    public int selectCountByCondition(Book book){
+        return mapper.selectCountByCondition(book);
+    }
+
 }

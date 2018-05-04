@@ -11,7 +11,7 @@ public class Category {
 
     private Date updateTime;
 
-    private Integer isDel;
+    private Integer status;
 
     private Long parentId;
 
@@ -47,12 +47,12 @@ public class Category {
         this.updateTime = updateTime;
     }
 
-    public Integer getIsDel() {
-        return isDel;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getParentId() {
