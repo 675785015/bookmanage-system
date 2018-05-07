@@ -22,28 +22,14 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="input-group ">
-                                    <div class="input-group-addon">会员编号</div>
+                                    <div class="input-group-addon">借书单编号</div>
                                     <input type="text" class="form-control" placeholder="" name="title" v-model="searchObj.title">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group margin">
-                                    <div class="input-group-addon">文章类别</div>
-                                    <div id="tree"></div>
-                                    <select class="select2" id="typeId" name="typeId" style="width: 15rem;"
-                                            v-model="searchObj.typeId">
-                                        <option value="0">全部</option>
-                                        <option v-for="item in aTypes" :value="item.id">{{ item.name }}</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group  margin">
                                     <a href="javascript:void(0);" class="btn btn-primary" role="button" id="btnSearch" @click.prevent="search">搜索</a>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <a href="/article/details/0" class="btn btn-primary" role="button" id="add-people">添加</a>
                             </div>
                         </div>
                     </form>
@@ -70,15 +56,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr role="row" v-for="item in articles">
-                                            <td>{{item.typeName}}</td>
-                                            <td>{{item.title}}</td>
-                                            <td>{{item.editDate}}</td>
-                                            <td>{{item.updateTime}}</td>
-                                            <td>{{item.updateTime}}</td>
+                                        <tr role="row" v-for="item in orderlist">
+                                            <td>{{item.ordNumber}}</td>
+                                            <td>{{item.ordBorrowTime}}</td>
+                                            <td>{{item.ordReturnTime}}</td>
+                                            <td>{{item.ordPlanTime}}</td>
+                                            <td>{{status[item.ordStatus]}}</td>
                                             <td>
                                                 <a :href="getEditHref(item.id)" class="btn btn-default btn-xs" role="button">详情</a>
-                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="openDeleteWin(item.id)">我的借书单</a>
+                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="openDeleteWin(item.id)">归还</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -99,6 +85,6 @@
 </div>
 <!-- /.content-wrapper -->
 <#include "/common/footer.html"/>
-<script src="/content/script/member/index.js"></script>
+<script src="/content/script/order/index.js"></script>
 </body>
 </html>

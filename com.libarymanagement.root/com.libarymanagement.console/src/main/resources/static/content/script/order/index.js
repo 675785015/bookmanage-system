@@ -4,8 +4,8 @@ var model = {
     //查询条件
     searchObj: {},
     //列表
-    memberlist:[],
-    status:["销户","正常"]
+    orderlist:[],
+    status:["否","是"]
 };
 
 // 创建一个 Vue 实例 (ViewModel),它连接 View 与 Model
@@ -16,7 +16,6 @@ var vm = new Vue({
         //初始化本地数据
         model.searchObj.pageIndex=0;
         model.searchObj.pageSize=2;
-        model.searchObj.onShelfState=0;
     },
     //初始化远程数据
     created:function(){
@@ -26,9 +25,9 @@ var vm = new Vue({
     methods: {
         search:function(event){
 
-            $.get("/api/member/getMemberList",model.searchObj,function(response){
+            $.get("/api/order/orderList",model.searchObj,function(response){
                 if (response.success_is_ok){
-                    vm.memberlist=response.data;
+                    vm.orderlist=response.data;
                     if (response.count>0){
                         var pageCount = Math.ceil(response.count / model.searchObj.pageSize);
                         //调用分页

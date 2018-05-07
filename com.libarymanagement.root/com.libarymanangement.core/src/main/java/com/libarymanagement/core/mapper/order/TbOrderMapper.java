@@ -5,6 +5,7 @@ import com.libarymanagement.core.extEntity.PageWhere;
 import com.libarymanagement.core.pojo.TbOrder;
 import com.libarymanagement.core.requestModel.OrderSearch;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface TbOrderMapper {
 
     int updateByPrimaryKey(TbOrder record);
 
-    List<TbOrder> getListByCondition(@PathVariable("order")OrderSearch record, @PathVariable("pageWhere")PageWhere pageWhere);
+    List<TbOrder> getListByCondition(@Param("order")OrderSearch record, @Param("pageWhere")PageWhere pageWhere);
 
-    int getCountByCondition(@PathVariable("order")OrderSearch record);
+    int getCountByCondition(@Param("order")OrderSearch record);
 }

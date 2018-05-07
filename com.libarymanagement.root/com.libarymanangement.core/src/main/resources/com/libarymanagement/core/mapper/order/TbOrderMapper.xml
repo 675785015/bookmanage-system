@@ -142,9 +142,6 @@
               AND ord_borrow_time <= ${order.ordBorrowTimeET}
             ]]>
         </if>
-        <if test="pageWhere!=null">
-            LIMIT #{pageWhere.begin},#{pageWhere.pageSize}
-        </if>
     </sql>
 
 
@@ -156,6 +153,9 @@
         <where>
             <include refid="selectByCondition_Where_Clause"/>
         </where>
+        <if test="pageWhere!=null">
+            LIMIT #{pageWhere.begin},#{pageWhere.pageSize}
+        </if>
     </select>
 
     <select id="getCountByCondition" resultType="int">

@@ -39,4 +39,10 @@ public class HtmlController {
         model.addAttribute("id",id);
         return "member/detail";
     }
+
+    @RequestMapping("toAddOrder/{id}")
+    public String toAddOrder(@PathVariable("id")long id,Model model){
+        model.addAttribute("memberId",id);
+        return "order/add";
+    }
 }

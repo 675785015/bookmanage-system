@@ -152,9 +152,6 @@
         <if test="member.status!=null">
             AND status = #{member.status,jdbcType=INTEGER}
         </if>
-        <if test="pageWhere!=null">
-            LIMIT #{pageWhere.begin},#{pageWhere.pageSize}
-        </if>
     </sql>
 
     <select id="getListByCondition" resultMap="BaseResultMap">
@@ -165,6 +162,9 @@
         <where>
             <include refid="selectByCondition_Where_Clause"/>
         </where>
+        <if test="pageWhere!=null">
+            LIMIT #{pageWhere.begin},#{pageWhere.pageSize}
+        </if>
     </select>
     
     <select id="getCountByCondition" resultType="int">
