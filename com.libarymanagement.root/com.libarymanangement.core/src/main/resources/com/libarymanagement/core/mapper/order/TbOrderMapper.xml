@@ -149,7 +149,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM
-        tb_member
+        tb_order
         <where>
             <include refid="selectByCondition_Where_Clause"/>
         </where>
@@ -162,7 +162,7 @@
         SELECT
         count(id)
         FROM
-        tb_member
+        tb_order
         <where>
             <include refid="selectByCondition_Where_Clause"/>
         </where>

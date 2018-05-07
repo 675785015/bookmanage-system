@@ -140,13 +140,13 @@
     
 
     <sql id="selectByCondition_Where_Clause">
-        <if test="member.cardNumber!=null">
+        <if test="member.cardNumber!=null and member.cardNumber != ''">
             card_number = #{member.cardNumber,jdbcType=VARCHAR}
         </if>
-        <if test="member.trueName!=null">
+        <if test="member.trueName!=null and member.trueName!=''">
             AND true_name = #{member.trueName,jdbcType=VARCHAR}
         </if>
-        <if test="member.mobile!=null">
+        <if test="member.mobile!=null and member.mobile!=''">
             AND mobile = #{member.mobile,jdbcType=VARCHAR}
         </if>
         <if test="member.status!=null">

@@ -1,19 +1,24 @@
 package com.libarymanagement.console.controller.order;
 
+import com.libarymanagement.console.vm.OrderDetailVM;
 import com.libarymanagement.console.vm.OrderForm;
 import com.libarymanagement.core.extEntity.CommonEntity;
 import com.libarymanagement.core.extEntity.PageWhere;
 import com.libarymanagement.core.pojo.Book;
+import com.libarymanagement.core.pojo.TbMember;
 import com.libarymanagement.core.pojo.TbOrder;
 import com.libarymanagement.core.requestModel.OrderSearch;
 import com.libarymanagement.core.responseModel.base.*;
 import com.libarymanagement.core.service.BookService;
+import com.libarymanagement.core.service.MemberService;
 import com.libarymanagement.core.service.OrderService;
 import com.libarymanagement.core.utils.ValidationUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -30,6 +35,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private BookService bookService;
+    @Autowired
+    private MemberService memberService;
     //借书单列表
     @RequestMapping("orderList")
     @ResponseBody
@@ -86,7 +93,7 @@ public class OrderController {
         }
     }
     //还书
-    @RequestMapping("backBook")
+    @RequestMapping(value = "backBook",method = RequestMethod.POST)
     @ResponseBody
     public JsonResult backBook(long id){
         TbOrder order = new TbOrder();
@@ -95,11 +102,30 @@ public class OrderController {
         order.setOrdStatus(CommonEntity.STATUS_ON);
         int i = orderService.addOrUpdateOrder(order);
         if(i>0){
-            return new JsonResultOk();
+            return new JsonResultOk("归还操作成功");
+        }else{
+            return new JsonResultError("操作失败");
+        }
+    }
+
+    @RequestMapping("getOrderDetail")
+    @ResponseBody
+    public JsonResult getOrderDetail(long id){
+        TbOrder order = orderService.getOrderById(id);
+        if(order!=null){
+            TbMember member = memberService.getMemberById(order.getOrdMemberId());
+            Book book = bookService.getOneById(order.getOrdBookId());
+            OrderDetailVM vm = new OrderDetailVM();
+            vm.setBookName(book.getName());
+            vm.setMemberName(member.getTrueName());
+            vm.setOrderNumber(order.getOrdNumber());
+            vm.setPlanDateTime(order.getOrdPlanTime());
+            return new JsonResultData<>(vm);
         }else{
             return new JsonResultError();
         }
     }
+
     //更新书单
 //    @RequestMapping("updateOrder")
 //    @ResponseBody

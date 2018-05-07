@@ -22,15 +22,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public int insertOrUpdate(Book book) {
-        // 查询isbn是否存在
-        Book exist = new Book();
-        exist.setIsbn(book.getIsbn());
-        int i = bookDao.selectCountByCondition(exist);
-        if(i>0){
-            return 0;
-        }
 
         if(book.getId()==null){
+            // 查询isbn是否存在
+            Book exist = new Book();
+            exist.setIsbn(book.getIsbn());
+            int i = bookDao.selectCountByCondition(exist);
+            if(i>0){
+                return 0;
+            }
             book.setCreateTime(new Date());
             book.setUpdateTime(book.getCreateTime());
             book.setOnShelf(CommonEntity.STATUS_OFF);

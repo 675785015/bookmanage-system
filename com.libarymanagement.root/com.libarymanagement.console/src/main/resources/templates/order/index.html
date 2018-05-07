@@ -48,8 +48,8 @@
                                         <thead>
                                         <tr role="row">
                                             <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">单号</th>
-                                            <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书时间</th>
-                                            <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">还书时间</th>
+                                            <th width="10%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书时间</th>
+                                            <th width="10%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">还书时间</th>
                                             <th width="10%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">计划还书时间</th>
                                             <th width="5%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">是否归还</th>
                                             <th width="20%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">操作</th>
@@ -63,8 +63,8 @@
                                             <td>{{item.ordPlanTime}}</td>
                                             <td>{{status[item.ordStatus]}}</td>
                                             <td>
-                                                <a :href="getEditHref(item.id)" class="btn btn-default btn-xs" role="button">详情</a>
-                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="openDeleteWin(item.id)">归还</a>
+                                                <a v-if="item.ordStatus==0" href="javascript:void(0);" class="btn btn-default btn-xs" role="button" @click.prevent="toOrderDetail(item.id)">详情</a>
+                                                <a v-if="item.ordStatus==0" href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="backBook(item.id)">归还</a>
                                             </td>
                                         </tr>
                                         </tbody>

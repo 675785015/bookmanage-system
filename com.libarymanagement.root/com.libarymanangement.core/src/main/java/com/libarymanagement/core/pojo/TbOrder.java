@@ -1,5 +1,8 @@
 package com.libarymanagement.core.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class TbOrder {
@@ -11,10 +14,11 @@ public class TbOrder {
 
     private Long ordBookId;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordBorrowTime;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordReturnTime;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordPlanTime;
 
     private Integer ordStatus;

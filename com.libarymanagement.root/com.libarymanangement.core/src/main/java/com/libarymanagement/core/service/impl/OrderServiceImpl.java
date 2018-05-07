@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
             order.setOrdBorrowTime(new Date());
             return orderDao.insert(order);
         } else {
-            return orderDao.insertSelective(order);
+            return orderDao.updateByPrimaryKeySelective(order);
         }
     }
 

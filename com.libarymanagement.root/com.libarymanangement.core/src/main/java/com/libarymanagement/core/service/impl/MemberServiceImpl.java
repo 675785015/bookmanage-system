@@ -34,16 +34,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int addOrUpdateMember(TbMember member) {
 
-        if(StringUtils.isNotBlank(member.getCardNumber())){
-            member.setStatus(CommonEntity.STATUS_ON);
-            int count = memberDao.getCountByCondition(member);
-            if(count>0){    //编号已存在
-                return 0;
-            }
-        }
         if(member.getId()!=null){//update
             return memberDao.updateByPrimaryKeySelective(member);
         }else{
+            if(StringUtils.isNotBlank(member.getCardNumber())){
+                TbMember tbMember = new TbMember();
+                tbMember.setCardNumber(member.getCardNumber());
+                int count = memberDao.getCountByCondition(tbMember);
+                if(count>0){    //编号已存在
+                    return 0;
+                }
+            }
             member.setRegisterDatetime(new Date());
             member.setStatus(CommonEntity.STATUS_ON);
             return memberDao.insert(member);

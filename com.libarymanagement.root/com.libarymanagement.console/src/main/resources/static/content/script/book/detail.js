@@ -28,6 +28,7 @@ var vm = new Vue({
                     if (response.success_is_ok) {
                         vm.book = response.data;
                         vm.realpath = vm.rootPath+vm.book.coverPath;
+                        vm.filepath = vm.book.coverPath;
                     }
                 });
             },
