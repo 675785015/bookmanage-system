@@ -17,13 +17,12 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 /**
  * Created by Administrator on 2016/10/11.
  */
-@Configuration
+//@Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
     /**
      * 配置拦截器
      *
      * @param registry
-     * @author yzd
      */
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AuthorizeInterceptor())
