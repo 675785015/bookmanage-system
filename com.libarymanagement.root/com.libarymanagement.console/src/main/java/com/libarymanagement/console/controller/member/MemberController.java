@@ -3,8 +3,11 @@ package com.libarymanagement.console.controller.member;
 import com.libarymanagement.core.extEntity.CommonEntity;
 import com.libarymanagement.core.extEntity.PageWhere;
 import com.libarymanagement.core.pojo.TbMember;
+import com.libarymanagement.core.pojo.TbOrder;
+import com.libarymanagement.core.requestModel.OrderSearch;
 import com.libarymanagement.core.responseModel.base.*;
 import com.libarymanagement.core.service.MemberService;
+import com.libarymanagement.core.service.OrderService;
 import com.libarymanagement.core.utils.ValidationUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,20 +28,31 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
-
+    @Autowired
+    private OrderService orderService;
     //注销会员
     @RequestMapping("logoutMember")
     @ResponseBody
-    public JsonResult logoutMember(@NotNull(message = "主键不能为空")Long id){
+    public JsonResult logoutMember(@NotNull(message = "主键不能为空")Long id, String reason){
 
         String s = ValidationUtil.validateModel(id);
         if(StringUtils.isNotBlank(s)){
             return new JsonResultError(s);
         }
+        //查询是否有未还的图书
+        OrderSearch searchobj = new OrderSearch();
+        searchobj.setMemberId(id);
+        searchobj.setStatus(CommonEntity.STATUS_ON);
+        int orderCount = orderService.countByCondition(searchobj);
+        if(orderCount>0){
+            return new JsonResultError("注销失败，有未归还的图书");
+        }
 
         TbMember member = new TbMember();
         member.setId(id);
+        member.setLogoutReason(reason);
         member.setStatus(CommonEntity.STATUS_OFF);
+        member.setLogoutDatetime(new Date());
         int i = memberService.addOrUpdateMember(member);
         if(i>0){
             return new JsonResultOk("注销成功");

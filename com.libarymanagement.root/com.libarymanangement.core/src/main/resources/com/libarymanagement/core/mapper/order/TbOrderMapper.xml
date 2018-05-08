@@ -128,8 +128,11 @@
   </update>
 
     <sql id="selectByCondition_Where_Clause">
+        <if test="order.memberId!=null">
+            ord_member_id = #{order.memberId,jdbcType=VARCHAR}
+        </if>
         <if test="order.ordNumber!=null">
-            ord_number = #{order.ordNumber,jdbcType=VARCHAR}
+            AND ord_number = #{order.ordNumber,jdbcType=VARCHAR}
         </if>
         <if test="order.status!=null">
             AND ord_status = #{order.status,jdbcType=INTEGER}

@@ -67,8 +67,8 @@
                                             <td>{{status[item.status]}}</td>
                                             <td>
                                                 <a href="javascript:void(0);" @click.prevent="todetail(item.id)" class="btn btn-default btn-xs" role="button">详情</a>
-                                                <a :href="'/toAddOrder/'+item.id" class="btn btn-default btn-xs" role="button">添加借书单</a>
-                                                <!--<a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="myorders(item.id)">我的借书单</a>-->
+                                                <a v-if="item.status==1" :href="'/toAddOrder/'+item.id" class="btn btn-default btn-xs" role="button">添加借书单</a>
+                                                <a v-if="item.status==1" href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="logout(item.id)">注销</a>
                                             </td>
                                         </tr>
                                         </tbody>

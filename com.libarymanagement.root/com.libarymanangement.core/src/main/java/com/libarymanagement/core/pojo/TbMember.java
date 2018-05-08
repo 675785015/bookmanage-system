@@ -1,5 +1,8 @@
 package com.libarymanagement.core.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class TbMember {
@@ -10,9 +13,9 @@ public class TbMember {
     private String collegeName;
 
     private String trueName;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registerDatetime;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date logoutDatetime;
 
     private String logoutReason;

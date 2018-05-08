@@ -36,7 +36,7 @@ var vm = new Vue({
                 //    alert(e+":"+member[e]);
                 //}
                 var obj = $("#fileForm").serializeObject();
-                $.post("/api/member/addMember",obj,function(response){
+                $.post("/api/member/Member",obj,function(response){
                     if(response.success_is_ok){
                         layer.msg(response.msg,{icon: 1,time:3000},function(){
                             window.location.reload();
@@ -51,3 +51,10 @@ var vm = new Vue({
     });
 
 
+/*开始时间选择*/
+laydate({
+    elem:'#planDate',
+    istime: true,
+    istoday : false,
+    format: 'YYYY-MM-DD'
+});

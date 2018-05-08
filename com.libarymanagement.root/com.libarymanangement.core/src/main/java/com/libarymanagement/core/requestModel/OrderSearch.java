@@ -9,6 +9,15 @@ public class OrderSearch {
     private Integer status;
     private String ordBorrowTimeST;
     private String ordBorrowTimeET;
+    private Long memberId;
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 
     public String getOrdNumber() {
         return ordNumber;

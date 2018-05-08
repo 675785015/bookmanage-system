@@ -15,6 +15,7 @@ import com.libarymanagement.core.service.OrderService;
 import com.libarymanagement.core.utils.ValidationUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -127,23 +128,19 @@ public class OrderController {
     }
 
     //更新书单
-//    @RequestMapping("updateOrder")
-//    @ResponseBody
-//    public JsonResult updateOrder(OrderForm order){
-//        String s = ValidationUtil.validateModel(order);
-//        if(StringUtils.isNotBlank(s)){
-//            return new JsonResultError(s);
-//        }
-//
-//
-//
-//
-//        int i = orderService.addOrUpdateOrder(order1);
-//        if(i>0){
-//            return new JsonResultOk();
-//        }else{
-//            return new JsonResultError();
-//        }
-//
-//    }
+    @RequestMapping("updateOrder")
+    @ResponseBody
+    public JsonResult updateOrder(long id, @DateTimeFormat(pattern = "yyyy-MM-dd")Date planDate){
+
+        TbOrder order = new TbOrder();
+        order.setId(id);
+        order.setOrdPlanTime(planDate);
+        int i = orderService.addOrUpdateOrder(order);
+        if(i>0){
+            return new JsonResultOk("修改成功");
+        }else{
+            return new JsonResultError("修改失败");
+        }
+
+    }
 }

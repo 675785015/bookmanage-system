@@ -33,56 +33,55 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">会员详情</h3>
                     </div>
-                    <!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" id="fileForm" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id" id="memberId" value="${id}"/>
                         <div class="box-body">
                             <div class="input-group">
                                 <span class="input-group-addon">学生证号</span>
-                                <input type="text" class="form-control" name="cardNumber" :value="member.cardNumber">
+                                <input type="text" class="form-control" name="cardNumber" :value="member.cardNumber" :disabled="member.status==0">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">学院</span>
-                                <input type="text" class="form-control" placeholder="学院" name="collegeName" :value="member.collegeName">
+                                <input type="text" class="form-control" placeholder="学院" name="collegeName" :value="member.collegeName" :disabled="member.status==0">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">姓名</span>
-                                <input type="text" class="form-control" placeholder="姓名" name="trueName" :value="member.trueName">
+                                <input type="text" class="form-control" placeholder="姓名" name="trueName" :value="member.trueName" :disabled="member.status==0">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">注册时间</span>
-                                <input type="text" class="form-control" :value="member.registerDatetime" >
+                                <input type="text" class="form-control" :value="member.registerDatetime" :disabled="member.status==0">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">手机号</span>
-                                <input type="text" class="form-control" name="mobile" :value="member.mobile">
+                                <input type="text" class="form-control" name="mobile" :value="member.mobile" :disabled="member.status==0">
                             </div>
                             <br>
 
                             <div class="input-group" v-if="member.status==0">
                                 <span class="input-group-addon">销户时间</span>
-                                <input type="text" class="form-control" :value="member.logoutDatetime">
+                                <input type="text" class="form-control" :value="member.logoutDatetime" :disabled="member.status==0">
                             </div>
                             <br>
 
                             <div class="input-group" v-if="member.status==0">
                                 <span class="input-group-addon">销户原因</span>
-                                <input type="text" class="form-control" :value="member.logoutReason">
+                                <input type="text" class="form-control" :value="member.logoutReason" :disabled="member.status==0">
                             </div>
                             <br>
 
                         </div>
                         <!-- /.box-body -->
-                        <div class="box-footer">
+                        <div class="box-footer" v-if="member.status==1">
                             <button class="btn btn-primary" @click.prevent="formSubmit" :disabled='isDisabled'>更新</button>
                         </div>
                     </form>

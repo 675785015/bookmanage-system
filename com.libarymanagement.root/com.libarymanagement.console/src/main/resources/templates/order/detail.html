@@ -47,21 +47,26 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon">会员名称</span>
-                                <input type="text" class="form-control" placeholder="会员名称" readonly
+                                <input type="text" class="form-control" placeholder="会员名称" :disabled="true"
                                        :value="order.memberName">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">书名</span>
-                                <input type="text" class="form-control" placeholder="姓名" readonly
+                                <input type="text" class="form-control" placeholder="姓名"  :disabled="true"
                                        :value="order.bookName">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon">借书时间</span>
+                                <input type="text" class="form-control" :value="order.planDateTime" :disabled="true">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">计划还书时间</span>
-                                <input type="text" class="form-control" :value="order.planDateTime">
+                                <input type="text" class="form-control chooseDate" :value="order.planDateTime" name="planDate" readonly id="planDate">
                             </div>
                             <br>
                         </div>
