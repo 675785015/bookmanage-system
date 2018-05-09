@@ -1,41 +1,41 @@
 /**
  * Created by lihui on 2016/10/21.
  */
-$(document).ready(function() {
+$(document).ready(function () {
     initValidateForm();
-    $("#submitBtn").click(function(){
+    $("#submitBtn").click(function () {
         var bootstrapValidator = $("#defaultForm").data('bootstrapValidator').validate();
-        if(!bootstrapValidator.isValid()){return;}
-        //TODO 后台逻辑
-        //var $form = $("#defaultForm");
-        //var use = $("#user").val();
-        //var pwd=hex_sha1($("#password").val());
-        //var ver=$("#photokey").val();
-        //$.post($form.attr('action'), {username:use,password:pwd,verifyCode:ver}, function (response){
-        $.axForForm($('#defaultForm'),function(response){
+        if (!bootstrapValidator.isValid()) {
+            return;
+        }
 
-            if(response.success_is_ok)
-            {
-                window.location.href="/home/index";
+        var $form = $("#defaultForm");
+        var submitData = $form.serializeObject();
+        $.post("/api/account/login", submitData, function (response) {
+            if (response.success_is_ok) {
+                window.location.href = "/home/index";
                 return;
-            }else{
+            } else {
                 $("#error_place_id").html(response.msg);
                 $(".verification").click();
             }
         });
+        return false;
     });
-    $(document).keyup(function(event) {
-        if(event.which==13){
+
+    $(document).keyup(function (event) {
+        if (event.which == 13) {
             $("#submitBtn").click();
         }
     });
-    //点击切换验证码图片
-    $(".verification").click(function(){
-        $(this).attr('src','/captcha/getCode?'+Math.random());
+//点击切换验证码图片
+    $(".verification").click(function () {
+        $(this).attr('src', '/captcha/getCode?' + Math.random());
     });
-});
+})
+;
 //表单登录验证封装
-function initValidateForm(){
+function initValidateForm() {
     $('#defaultForm').bootstrapValidator({
         fields: {
             username: {
@@ -61,7 +61,7 @@ function initValidateForm(){
                         message: '密码不能为空'
                     },
                     regexp: {
-                        regexp:/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/,
+                        regexp: /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/,
                         message: '密码格式有误'
                     },
                     different: {

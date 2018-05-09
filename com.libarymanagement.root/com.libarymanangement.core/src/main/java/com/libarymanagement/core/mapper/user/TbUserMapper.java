@@ -15,4 +15,6 @@ public interface TbUserMapper {
     int updateByPrimaryKeySelective(TbUser record);
 
     int updateByPrimaryKey(TbUser record);
+
+    TbUser selectUserByUserName(String username);
 }
