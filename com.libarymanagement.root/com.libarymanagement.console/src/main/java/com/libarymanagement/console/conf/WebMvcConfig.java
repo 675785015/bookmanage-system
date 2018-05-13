@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 /**
  * Created by Administrator on 2016/10/11.
  */
-//@Configuration
+@Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
     /**
      * 配置拦截器
@@ -30,7 +30,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
                 .excludePathPatterns("/tempTest/version")
                 .excludePathPatterns("/account/login")
                 .excludePathPatterns("/captcha/getCode")
-                .excludePathPatterns("/api/account/login")
+                .excludePathPatterns("/api/user/login")
                 .excludePathPatterns("/contract/template/**")
                 .excludePathPatterns("/content/**")
                 .excludePathPatterns("/favicon.ico");

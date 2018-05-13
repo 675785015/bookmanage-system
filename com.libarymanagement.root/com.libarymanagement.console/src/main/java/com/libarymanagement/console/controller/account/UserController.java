@@ -20,13 +20,13 @@ import javax.servlet.http.HttpSession;
  * Created by Lee on 2018/5/9.
  */
 @Controller
-@RequestMapping("/api/account")
-public class AccountController {
+@RequestMapping("/api/user")
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login")
     @ResponseBody
     public JsonResult login(String name, String password, String verifyCode, HttpSession session){
         //获得正确的验证码
