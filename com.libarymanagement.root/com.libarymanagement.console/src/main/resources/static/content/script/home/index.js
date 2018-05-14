@@ -13,15 +13,15 @@ var vm = new Vue({
     },
     //初始化远程数据
     created: function () {
-        $.get("/api/account/accountCount", function (response) {
-            if (response.success_is_ok) {
-                var data = response.data;
-                if (data != null) {
-                    vm.accountCount = data;
-                }
-            }else{
-                layer.msg(response.error);
-            }
-        });
+        //$.get("/api/account/accountCount", function (response) {
+        //    if (response.success_is_ok) {
+        //        var data = response.data;
+        //        if (data != null) {
+        //            vm.accountCount = data;
+        //        }
+        //    }else{
+        //        layer.msg(response.error);
+        //    }
+        //});
     }
 });

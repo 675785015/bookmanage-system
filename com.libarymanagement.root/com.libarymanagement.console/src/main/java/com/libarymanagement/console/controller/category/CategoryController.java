@@ -64,12 +64,12 @@ public class CategoryController {
     public JsonResult remove(@Param("category")Category category) {
         category.setStatus(CommonEntity.STATUS_OFF);
         int i = categoryService.addUpdateDelCategory(category);
-        if (i > 0) {
+        if (i > 0) {//
             category = categoryService.selectByPrimaryKey(category.getId());
             JsonResult jsonResult = categoryList(category.getParentId());
             return jsonResult;
         } else {
-            return new JsonResultError("删除失败");
+            return new JsonResultError("删除失败,包含子分类");
         }
     }
 }

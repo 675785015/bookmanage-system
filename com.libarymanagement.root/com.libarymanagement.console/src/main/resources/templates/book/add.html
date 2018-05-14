@@ -8,7 +8,10 @@
 <#include "/common/main-header.html"/>
 <!-- Left side column. contains the logo and sidebar -->
 <#include "/common/main-sidebar.html"/>
-
+<style type="text/css">
+    .input-group-addon{width:81px;}
+    .input-group .form-control{width:424px;}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -77,8 +80,8 @@
                                 <div style="width: 100px;height: 140px">
                                     <img :src="realpath" width="100px" height="140px">
                                 </div>
-                                <input id="imgsFile" type="file" name="imgsFile" class="layui-btn"/>
-                                <button class="btn btn-primary" @click.prevent="submitUpload">上传</button>
+                                <input id="imgsFile" type="file" name="imgsFile" class="layui-btn" style="margin-top:15px;margin-bottom:15px;float:left;"/>
+                                <button class="btn btn-primary" @click.prevent="submitUpload" style="margin-top:12px;">上传</button>
                                 <input name="coverPath" type="hidden" :value="filepath"/>
                             </div>
                         </div>

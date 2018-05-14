@@ -121,6 +121,8 @@ public class OrderController {
             vm.setMemberName(member.getTrueName());
             vm.setOrderNumber(order.getOrdNumber());
             vm.setPlanDateTime(order.getOrdPlanTime());
+            vm.setOrdReturnTime(order.getOrdReturnTime());
+            vm.setOrdStatus(order.getOrdStatus());
             return new JsonResultData<>(vm);
         }else{
             return new JsonResultError();

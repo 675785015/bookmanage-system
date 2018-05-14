@@ -12,8 +12,28 @@ public class OrderDetailVM {
     private String orderNumber;
     private String memberName;
     private String bookName;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date planDateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date ordReturnTime;
+
+    private Integer ordStatus;
+
+    public Date getOrdReturnTime() {
+        return ordReturnTime;
+    }
+
+    public void setOrdReturnTime(Date ordReturnTime) {
+        this.ordReturnTime = ordReturnTime;
+    }
+
+    public Integer getOrdStatus() {
+        return ordStatus;
+    }
+
+    public void setOrdStatus(Integer ordStatus) {
+        this.ordStatus = ordStatus;
+    }
 
     public String getOrderNumber() {
         return orderNumber;

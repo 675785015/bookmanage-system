@@ -51,6 +51,9 @@
                                             <th width="10%" class="ui-state-default sorting_disabled" rowspan="1"
                                                 colspan="1">一级分类
                                             </th>
+                                            <th width="30%" class="ui-state-default sorting_disabled" rowspan="1"
+                                                colspan="1">
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -74,12 +77,10 @@
                                                         <li><a href="javascript:void(0);"
                                                                class="btn btn-default btn-xs remove-msg" role="button"
                                                                @click.prevent="removeCategory(item.id,1)"
-                                                               title="删除分类"><span
-                                                                class="glyphicon glyphicon-remove"></span></a></li>
+                                                               title="删除分类">删除分类</a></li>
                                                         <li><a class="btn btn-default btn-xs" role="button"
                                                                title="展开子分类"
-                                                               @click.prevent="getChildCategorys2(item.id)"><span
-                                                                class="glyphicon glyphicon-chevron-right"></span></a>
+                                                               @click.prevent="getChildCategorys2(item.id)">展开子分类</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -100,20 +101,38 @@
                                             <th width="10%" class="ui-state-default sorting_disabled" rowspan="1"
                                                 colspan="1">二级分类
                                             </th>
+                                            <th width="30%" class="ui-state-default sorting_disabled" rowspan="1"
+                                                colspan="1">
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr role="row" v-for="item in categorys2">
-                                            <td>{{item.name}}
-                                                <a class="btn btn-default btn-xs" role="button"
-                                                   @click.prevent="addChild(item.id, item.name, 3)" title="添加子分类"><span
-                                                        class="glyphicon glyphicon-plus"></span></a>
-                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg"
-                                                   role="button" @click.prevent="removeCategory(item.id,2)"
-                                                   title="删除分类"><span class="glyphicon glyphicon-remove"></span></a>
-                                                <a class="btn btn-default btn-xs" role="button" title="展开子分类"
-                                                   @click.prevent="getChildCategorys3(item.id)"><span
-                                                        class="glyphicon glyphicon-chevron-right"></span></a>
+                                            <td>{{item.name}}</td>
+                                            <td>
+                                                <!-- Split button -->
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-primary">操作</button>
+                                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <span class="caret"></span>
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="btn btn-default btn-xs" role="button"
+                                                               @click.prevent="addChild(item.id, item.name, 3)"
+                                                               title="添加子分类">添加子分类</a></li>
+                                                        <li><a href="javascript:void(0);"
+                                                               class="btn btn-default btn-xs remove-msg" role="button"
+                                                               @click.prevent="removeCategory(item.id,2)"
+                                                               title="删除分类">删除分类</a></li>
+                                                        <li><a class="btn btn-default btn-xs" role="button"
+                                                               title="展开子分类"
+                                                               @click.prevent="getChildCategorys3(item.id)">展开子分类</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -131,17 +150,35 @@
                                             <th width="10%" class="ui-state-default sorting_disabled" rowspan="1"
                                                 colspan="1">三级分类
                                             </th>
+                                            <th width="30%" class="ui-state-default sorting_disabled" rowspan="1"
+                                                colspan="1">
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr role="row" v-for="item in categorys3">
-                                            <td>{{item.name}}
-                                                <a href="javascript:void(0);" class="btn btn-default btn-xs remove-msg"
-                                                   role="button" @click.prevent="removeCategory(item.id,3)"
-                                                   title="删除分类"><span class="glyphicon glyphicon-remove"></span></a>
-                                                <a :href="'/toAddBook/'+item.id+'/'+item.name"
-                                                   class="btn btn-default btn-xs remove-msg" role="button" title="添加图书"><span
-                                                        class="glyphicon glyphicon-remove"></span></a>
+                                            <td>{{item.name}}</td>
+                                            <td>
+                                                <!-- Split button -->
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-primary">操作</button>
+                                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <span class="caret"></span>
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="javascript:void(0);"
+                                                               class="btn btn-default btn-xs remove-msg" role="button"
+                                                               @click.prevent="removeCategory(item.id,3)"
+                                                               title="删除分类">删除分类</a></li>
+                                                        <li><a :href="'/toAddBook/'+item.id+'/'+item.name" class="btn btn-default btn-xs" role="button"
+                                                               title="添加图书"
+                                                               >添加图书</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>

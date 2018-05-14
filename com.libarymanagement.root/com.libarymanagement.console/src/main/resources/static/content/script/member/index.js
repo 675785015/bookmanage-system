@@ -16,6 +16,7 @@ var vm = new Vue({
         //初始化本地数据
         model.searchObj.pageIndex = 0;
         model.searchObj.pageSize = 10;
+        model.searchObj.status = '';
     },
     //初始化远程数据
     created: function () {

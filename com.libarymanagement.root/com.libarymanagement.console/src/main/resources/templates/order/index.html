@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <div class="input-group ">
                                     <div class="input-group-addon">借书单编号</div>
-                                    <input type="text" class="form-control" placeholder="" name="title" v-model="searchObj.title">
+                                    <input type="text" class="form-control" placeholder="" name="title" v-model="searchObj.ordNumber">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -63,7 +63,7 @@
                                             <td>{{item.ordPlanTime}}</td>
                                             <td>{{status[item.ordStatus]}}</td>
                                             <td>
-                                                <a v-if="item.ordStatus==0" href="javascript:void(0);" class="btn btn-default btn-xs" role="button" @click.prevent="toOrderDetail(item.id)">详情</a>
+                                                <a href="javascript:void(0);" class="btn btn-default btn-xs" role="button" @click.prevent="toOrderDetail(item.id)">详情</a>
                                                 <a v-if="item.ordStatus==0" href="javascript:void(0);" class="btn btn-default btn-xs remove-msg" role="button" @click.prevent="backBook(item.id)">归还</a>
                                             </td>
                                         </tr>
