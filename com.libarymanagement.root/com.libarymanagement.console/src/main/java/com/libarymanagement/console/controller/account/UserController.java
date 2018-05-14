@@ -20,15 +20,15 @@ import javax.servlet.http.HttpSession;
  * Created by Lee on 2018/5/9.
  */
 @Controller
-@RequestMapping("/api/account")
-public class AccountController {
+@RequestMapping("/api/user")
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login")
     @ResponseBody
-    public JsonResult login(String name, String password, String verifyCode, HttpSession session){
+    public JsonResult login(String username, String password, String verifyCode, HttpSession session){
         //获得正确的验证码
         String picCode = (String) session.getAttribute("verifyCode");
         //判断验证码是否正确
@@ -36,7 +36,7 @@ public class AccountController {
             return new JsonResultError("验证码不正确");
         }
         //根据用户名和密码来查询用户
-        TbUser user = userService.selectUserByUserName(name);
+        TbUser user = userService.selectUserByUserName(username);
         if(user != null){
             // 生成一个MD5加密计算摘要
             String s = ECPSMD5.GetMD5Code(password);
@@ -48,7 +48,7 @@ public class AccountController {
 
         }
 
-        return new JsonResultError("登录失败");
+        return new JsonResultError("用户名或密码不正确");
 
     }
 

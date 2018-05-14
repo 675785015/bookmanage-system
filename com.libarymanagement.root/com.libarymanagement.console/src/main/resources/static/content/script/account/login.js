@@ -11,12 +11,12 @@ $(document).ready(function () {
 
         var $form = $("#defaultForm");
         var submitData = $form.serializeObject();
-        $.post("/api/account/login", submitData, function (response) {
+        $.post("/api/user/login", submitData, function (response) {
             if (response.success_is_ok) {
                 window.location.href = "/home/index";
                 return;
             } else {
-                $("#error_place_id").html(response.msg);
+                $("#error_place_id").html(response.error);
                 $(".verification").click();
             }
         });
