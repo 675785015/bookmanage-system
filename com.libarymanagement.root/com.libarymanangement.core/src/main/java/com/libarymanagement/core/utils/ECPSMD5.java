@@ -48,8 +48,4 @@ public class ECPSMD5 {
       return resultString;
   }
 
-  public static void main(String[] args) {
-	  System.out.println(ECPSMD5.GetMD5Code("123456"));
-  }
-
 }

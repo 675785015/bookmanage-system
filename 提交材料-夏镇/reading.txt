@@ -1,0 +1,72 @@
+
+登录用户名密码
+
+zhangsan  123456
+
+
+
+
+tomcat作为图片服务器 配置修改
+
+1.修改启动端口为 8081
+
+2.Host中修改项目路径   <Context path=''  docBase='E:\nginx\app\oaapp'></Context>
+
+
+
+nginX配置
+
+#user root owner;   #在mac中获取权限时需要将注释去掉
+worker_processes  2; #启动进程,通常设置成和cpu的数量相等
+events {
+    worker_connections  1024; #单个后台worker process进程的最大并发链接数
+}
+http {
+    include       mime.types; #设定mime类型,类型由mime.type文件定义
+    default_type  application/octet-stream;
+    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy）来输出文件，对于普通应用，
+    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+    sendfile on;
+    keepalive_timeout  65; #连接超时时间
+    server {
+        listen 80; #侦听80端口
+        server_name www.bms.com; # 定义使用www.xx.com访问
+        charset utf-8;
+        location / {
+			proxy_pass http://127.0.0.1:8080;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+            proxy_set_header        X-Real-IP $remote_addr;
+            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+            client_max_body_size    10m;
+            client_body_buffer_size 128k;
+                        chunked_transfer_encoding off;
+            proxy_connect_timeout   90;
+            proxy_send_timeout      90;
+            proxy_read_timeout      90;
+            proxy_buffer_size       4M;
+            proxy_buffers          4 32M;
+            proxy_temp_file_write_size 64M;  
+			  
+        }
+		
+		
+    }
+	
+	server {
+        listen 80; #侦听80端口
+        server_name image.bms.com; # 定义使用www.xx.com访问
+        charset utf-8;
+        		
+		location ~ .*\.(jpg|png)$ {
+			root   app/oaapp;
+		}
+    }
+		
+}
+
+3. 修改host文件
+
+127.0.0.1  www.bms.com
+127.0.0.1  imagge.bms.com
+

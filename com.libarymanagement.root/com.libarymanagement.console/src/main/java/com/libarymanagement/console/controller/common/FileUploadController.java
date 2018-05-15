@@ -70,7 +70,7 @@ public class FileUploadController {
 
         //文件的绝对路径
         String realPath = systemConfig.getUploadFilesUrl()+tfileName + suffix;
-        String relativePath = "/image/"+tfileName + suffix;
+        String relativePath = "/"+tfileName + suffix;
         //创建Jersey客户端
         Client client = Client.create();
         //指定上传资源的位置

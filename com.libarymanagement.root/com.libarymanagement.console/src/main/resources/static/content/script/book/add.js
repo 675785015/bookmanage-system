@@ -4,7 +4,7 @@ var model = {
     //查询条件
     searchObj: {},
     filepath:'',
-    realpath:'http://image.bms.com/image/timg.jpg',
+    realpath:'http://image.bms.com/timg.jpg',
     rootPath:'http://image.bms.com',
     isDisabled:false
 };

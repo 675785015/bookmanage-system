@@ -13,17 +13,10 @@ import java.util.List;
  * Created by Lee on 2018/4/22.
  */
 public class BookDaoTest extends _BaseUnitTest {
-    @Autowired
-    private TbBookMapper mapper;
-
-    @Test
-    public void test_selectBookListByCondition(){
-        Book book = new Book();
-        book.setCategoryId(25L);
-        PageWhere pageWhere = new PageWhere(0,2);
-        List<Book> books = mapper.selectBookListByCondition(book,pageWhere);
-
-        System.out.println(books.size());
-
-    }
+//    @Autowired
+//    private TbBookMapper mapper;
+//
+//    @Test
+//    public void test_selectBookListByCondition(){
+//    }
 }
