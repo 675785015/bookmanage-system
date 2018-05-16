@@ -47,9 +47,7 @@ public class UserController {
            }
 
         }
-
         return new JsonResultError("用户名或密码不正确");
-
     }
 
     @RequestMapping("logout")
