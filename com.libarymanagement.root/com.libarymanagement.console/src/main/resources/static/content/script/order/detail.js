@@ -56,5 +56,5 @@ laydate({
     elem:'#planDate',
     istime: true,
     istoday : false,
-    format: 'YYYY-MM-DD'
+    format: 'YYYY-MM-DD HH:mm:ss'
 });

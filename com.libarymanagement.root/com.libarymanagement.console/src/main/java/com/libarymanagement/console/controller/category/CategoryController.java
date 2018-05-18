@@ -2,10 +2,12 @@ package com.libarymanagement.console.controller.category;
 
 import com.libarymanagement.console.vm.CategoryForm;
 import com.libarymanagement.core.extEntity.CommonEntity;
+import com.libarymanagement.core.pojo.Book;
 import com.libarymanagement.core.pojo.Category;
 import com.libarymanagement.core.responseModel.base.JsonResult;
 import com.libarymanagement.core.responseModel.base.JsonResultError;
 import com.libarymanagement.core.responseModel.base.JsonResultList;
+import com.libarymanagement.core.service.BookService;
 import com.libarymanagement.core.service.CategoryService;
 import com.libarymanagement.core.utils.ValidationUtil;
 import org.apache.ibatis.annotations.Param;
@@ -28,7 +30,8 @@ public class CategoryController {
 
     @Autowired
     public CategoryService categoryService;
-
+    @Autowired
+    public BookService bookService;
     //categorylist列表
     @RequestMapping("list")
     @ResponseBody
@@ -63,6 +66,13 @@ public class CategoryController {
     @ResponseBody
     public JsonResult remove(@Param("category")Category category) {
         category.setStatus(CommonEntity.STATUS_OFF);
+        Book book = new Book();
+        book.setCategoryId(category.getId());
+        //查看分类下有没有图书
+        int count = bookService.selectCountByCondition(book);
+        if(count>0){
+            return new JsonResultError("分类下含有图书,不能删除");
+        }
         int i = categoryService.addUpdateDelCategory(category);
         if (i > 0) {//
             category = categoryService.selectByPrimaryKey(category.getId());

@@ -3,6 +3,15 @@
 <head>
     <#include "/common/head.html"/>
     <link type="text/css" rel="styleSheet" href="/content/plugins/fileinput/css/fileinput.min.css">
+    <style type="text/css">
+        .input-group-addon {
+            width: 81px;
+        }
+
+        .input-group .form-control {
+            width: 424px;
+        }
+    </style>
 </head>
 <body class="skin-blue sidebar-mini">
 <#include "/common/main-header.html"/>
@@ -36,53 +45,76 @@
                     <!-- form start -->
                     <form role="form" id="fileForm" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id" id="memberId" value="${id}"/>
+
                         <div class="box-body">
-                            <div class="input-group">
-                                <span class="input-group-addon">学生证号</span>
-                                <input type="text" class="form-control" name="cardNumber" :value="member.cardNumber" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">学生证号</span>
+                                    <input type="text" class="form-control" name="cardNumber" :value="member.cardNumber"
+                                           :disabled="member.status==0" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                </div>
                             </div>
                             <br>
 
-                            <div class="input-group">
-                                <span class="input-group-addon">学院</span>
-                                <input type="text" class="form-control" placeholder="学院" name="collegeName" :value="member.collegeName" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">学院</span>
+                                    <input type="text" class="form-control" placeholder="学院" name="collegeName"
+                                           :value="member.collegeName" :disabled="member.status==0" onkeyup="this.value=this.value.replace(/(^\s+)|(\s+$)/g, '')">
+                                </div>
                             </div>
                             <br>
 
-                            <div class="input-group">
-                                <span class="input-group-addon">姓名</span>
-                                <input type="text" class="form-control" placeholder="姓名" name="trueName" :value="member.trueName" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">姓名</span>
+                                    <input type="text" class="form-control" placeholder="姓名" name="trueName"
+                                           :value="member.trueName" :disabled="member.status==0" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                </div>
                             </div>
                             <br>
 
-                            <div class="input-group">
-                                <span class="input-group-addon">注册时间</span>
-                                <input type="text" class="form-control" :value="member.registerDatetime" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">注册时间</span>
+                                    <input type="text" class="form-control" :value="member.registerDatetime"
+                                           :disabled="true">
+                                </div>
                             </div>
                             <br>
 
-                            <div class="input-group">
-                                <span class="input-group-addon">手机号</span>
-                                <input type="text" class="form-control" name="mobile" :value="member.mobile" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">手机号</span>
+                                    <input type="text" class="form-control" name="mobile" :value="member.mobile"
+                                           :disabled="member.status==0" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                </div>
                             </div>
                             <br>
 
-                            <div class="input-group" v-if="member.status==0">
-                                <span class="input-group-addon">销户时间</span>
-                                <input type="text" class="form-control" :value="member.logoutDatetime" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group" v-if="member.status==0">
+                                    <span class="input-group-addon">销户时间</span>
+                                    <input type="text" class="form-control" :value="member.logoutDatetime"
+                                           :disabled="member.status==0">
+                                </div>
                             </div>
                             <br>
 
-                            <div class="input-group" v-if="member.status==0">
-                                <span class="input-group-addon">销户原因</span>
-                                <input type="text" class="form-control" :value="member.logoutReason" :disabled="member.status==0">
+                            <div class="form-group">
+                                <div class="input-group" v-if="member.status==0">
+                                    <span class="input-group-addon">销户原因</span>
+                                    <input type="text" class="form-control" :value="member.logoutReason"
+                                           :disabled="member.status==0">
+                                </div>
                             </div>
                             <br>
 
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer" v-if="member.status==1">
-                            <button class="btn btn-primary" @click.prevent="formSubmit" :disabled='isDisabled'>更新</button>
+                            <button class="btn btn-primary" @click.prevent="formSubmit" :disabled='isDisabled'>更新
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -91,43 +123,43 @@
         </div>
     </section>
     <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-            <!--<div class="box-title">-->
-                <!--<h5>借书单列表</h5>-->
-            <!--</div>-->
-            <!--<div class="box box-primary">-->
-                <!--<div class="box-body">-->
-                    <!--<div class="dataTables_wrapper">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-12">-->
-                                <!--<table class="table table-bordered table-hover dataTable" role="grid" aria-describedby="orderlist_table_info">-->
-                                    <!--<thead>-->
-                                    <!--<tr role="row">-->
-                                        <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书单编号</th>-->
-                                        <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">书名</th>-->
-                                        <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书时间</th>-->
-                                        <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">计划还书时间</th>-->
-                                        <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">实际还书时间</th>-->
-                                        <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">是否归还</th>-->
-                                    <!--</tr>-->
-                                    <!--</thead>-->
-                                    <!--<tbody>-->
-                                    <!--<tr role="row" v-for="data in orders">-->
-                                        <!--<td>{{data.ordNumber}}</td>-->
-                                        <!--<td>{{---}}</td>-->
-                                        <!--<td>{{data.ordBorrowTime}}</td>-->
-                                        <!--<td>{{data.ordPlanTime}}</td>-->
-                                        <!--<td>{{data.ordReturnTime}}</td>-->
-                                        <!--<td>{{status[data.ordStatus]}}</td>-->
-                                    <!--</tr>-->
-                                    <!--</tbody>-->
-                                <!--</table>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+    <!--<div class="col-xs-12">-->
+    <!--<div class="box-title">-->
+    <!--<h5>借书单列表</h5>-->
+    <!--</div>-->
+    <!--<div class="box box-primary">-->
+    <!--<div class="box-body">-->
+    <!--<div class="dataTables_wrapper">-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-12">-->
+    <!--<table class="table table-bordered table-hover dataTable" role="grid" aria-describedby="orderlist_table_info">-->
+    <!--<thead>-->
+    <!--<tr role="row">-->
+    <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书单编号</th>-->
+    <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">书名</th>-->
+    <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">借书时间</th>-->
+    <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">计划还书时间</th>-->
+    <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">实际还书时间</th>-->
+    <!--<th width="14%" class="ui-state-default sorting_disabled" rowspan="1" colspan="1">是否归还</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr role="row" v-for="data in orders">-->
+    <!--<td>{{data.ordNumber}}</td>-->
+    <!--<td>{{---}}</td>-->
+    <!--<td>{{data.ordBorrowTime}}</td>-->
+    <!--<td>{{data.ordPlanTime}}</td>-->
+    <!--<td>{{data.ordReturnTime}}</td>-->
+    <!--<td>{{status[data.ordStatus]}}</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--</div>-->
 </div>
 <!-- /.content-wrapper -->

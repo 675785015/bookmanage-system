@@ -17,7 +17,7 @@ public class OrderForm {
     @NotBlank
     private String isbn;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date planDate;
 
 

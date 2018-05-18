@@ -12,7 +12,7 @@ public class OrderDetailVM {
     private String orderNumber;
     private String memberName;
     private String bookName;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date planDateTime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordReturnTime;

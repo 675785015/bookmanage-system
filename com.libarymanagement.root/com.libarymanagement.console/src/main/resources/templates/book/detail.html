@@ -51,44 +51,44 @@
 
                             <div class="input-group">
                                 <span class="input-group-addon">书名</span>
-                                <input type="text" class="form-control" placeholder="书名" name="name" :value="book.name">
+                                <input type="text" class="form-control" placeholder="书名" name="name" :value="book.name" :disabled="book.onShelf==1">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">作者</span>
-                                <input type="text" class="form-control" placeholder="作者" name="author" :value="book.author">
+                                <input type="text" class="form-control" placeholder="作者" name="author" :value="book.author" :disabled="book.onShelf==1">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">出版社</span>
-                                <input type="text" class="form-control" placeholder="出版社" name="press" :value="book.press">
+                                <input type="text" class="form-control" placeholder="出版社" name="press" :value="book.press" :disabled="book.onShelf==1">
                             </div>
                             <br>
 
                             <div class="input-group">
                                 <span class="input-group-addon">ISBN</span>
-                                <input type="text" class="form-control" placeholder="ISBN" name="isbn" :value="book.isbn">
+                                <input type="text" class="form-control" placeholder="ISBN" name="isbn" :value="book.isbn" :disabled="book.onShelf==1">
                             </div>
                             <br>
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>简介</label>
-                                <textarea class="form-control" rows="4" placeholder="Enter ..." name="preview" :value="book.preview"></textarea>
+                                <textarea class="form-control" rows="4" placeholder="Enter ..." name="preview" :value="book.preview" :disabled="book.onShelf==1"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>封面上传</label>
                                 <div style="width: 100px;height: 140px">
                                     <img :src="realpath" width="100px" height="140px">
                                 </div>
-                                <input id="imgsFile" type="file" name="imgsFile" class="layui-btn"  style="margin-top:15px;margin-bottom:15px;float:left;"/>
-                                <button class="btn btn-primary" @click.prevent="submitUpload"  style="margin-top:12px;">上传</button>
-                                <input name="coverPath" type="hidden" :value="filepath"/>
+                                <input id="imgsFile" type="file" name="imgsFile" class="layui-btn"  style="margin-top:15px;margin-bottom:15px;float:left;" v-if="book.onShelf==0"/>
+                                <button class="btn btn-primary" @click.prevent="submitUpload"  style="margin-top:12px;" v-if="book.onShelf==0">上传</button>
+                                <input name="coverPath" type="hidden" :value="filepath" v-if="book.onShelf==0"/>
                             </div>
                         </div>
                         <!-- /.box-body -->
-                        <div class="box-footer">
+                        <div class="box-footer" v-if="book.onShelf==0">
                             <button class="btn btn-primary" @click.prevent="formSubmit" :disabled="isDisabled">修改</button>
                         </div>
                     </form>

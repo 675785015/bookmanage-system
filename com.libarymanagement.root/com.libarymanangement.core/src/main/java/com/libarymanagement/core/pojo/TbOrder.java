@@ -18,7 +18,7 @@ public class TbOrder {
     private Date ordBorrowTime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordReturnTime;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordPlanTime;
 
     private Integer ordStatus;
